@@ -15,15 +15,19 @@ public class Main {
         }
 
         String csvOutputFileName = "";
+        File csvFile = null;
 
         try {
-            csvOutputFileName = createCSVOutputFile(exampleFileName);
+            csvOutputFileName = createCSVOutputFile(exampleFileName, csvFile);
             System.out.println("Output file name: " + csvOutputFileName);
+            CSVtoJSON.convert(csvOutputFileName);
         } catch (Exception e) {
             System.out.println("Block 2 - " + e.getMessage());
         }
         
+
         inScan.close();
+        
         
 
         
@@ -42,11 +46,11 @@ public class Main {
     }
 
     
-    public static String createCSVOutputFile(String inputFileName) throws FileNotFoundException
+    public static String createCSVOutputFile(String inputFileName, File csvFile) throws FileNotFoundException
     {
         Scanner inScan = new Scanner(new FileInputStream(inputFileName));
         String csvFileName = inputFileName.substring(0, inputFileName.length()-4) + "Output.csv";
-        File csvFile = new File(csvFileName);
+        csvFile = new File(csvFileName);
         PrintWriter csvPrintWriter = new PrintWriter(csvFile);
         
         String input = "";
