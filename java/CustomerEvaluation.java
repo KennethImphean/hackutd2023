@@ -2,9 +2,9 @@
 //
 
 abstract class CustomerEvaluation {
-    Customer x;
+    static Customer x;
 
-    public void test() {
+    public static void test() {
         System.out.print(x.getID());
 
     }
