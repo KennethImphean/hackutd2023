@@ -44,7 +44,21 @@ public abstract class CSVtoJSON {
             writer.print("\t\t\t\"" + titleArr[8] + "\": \"" + dataArr[8] + "\",");
             writer.println("\t\t\t");
 
-            writer.print("\t\t\t\"" + titleArr[9] + "\": \"" + dataArr[9] + "\"");
+            writer.print("\t\t\t\"" + titleArr[9] + "\": \"" + dataArr[9] + "\",");
+            writer.println("\t\t\t");
+
+            //
+
+            writer.print("\t\t\t\"" + "LTV" + "\": \"" + dataArr[10] + "\",");
+            writer.println("\t\t\t");
+
+            writer.print("\t\t\t\"" + "DTI" + "\": \"" + dataArr[11] + "\",");
+            writer.println("\t\t\t");
+
+            writer.print("\t\t\t\"" + "LEDTI" + "\": \"" + dataArr[12] + "\",");
+            writer.println("\t\t\t");
+
+            writer.print("\t\t\t\"" + "Overall" + "\": \"" + dataArr[13] + "\"");
             writer.println("\t\t\t");
 
             writer.print("\t\t}");
