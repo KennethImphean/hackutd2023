@@ -17,8 +17,58 @@ public abstract class CustomerEvaluation {
         int evalDTI = EvaluateDTI(x);
         int evalFEDTI = EvaluateFEDTI(x);
         
-        int overallScore = evalCredit + evalLTV * 10 + evalDTI * 100 + evalFEDTI * 1000;
+        int overallScore = evalCredit * 1000 + evalLTV * 100 + evalDTI * 10 + evalFEDTI * 1;
+        PrintOverall(overallScore);     //TODO: For testing, remove later!!!!
         return overallScore;
+    }
+
+    public static void PrintOverall(int overallScore) {
+        int temp = overallScore / 1000;
+        overallScore = overallScore % 1000;
+        System.out.print("Credit: ");
+        if (temp == 2) {
+            System.out.println("Good!");
+        }
+        else {
+            System.out.println("Bad...");
+        }
+
+        temp = overallScore / 100;
+        overallScore = overallScore % 100;
+        System.out.print("LTV: ");
+        if (temp == 2) {
+            System.out.println("Good!");
+        }
+        else if (temp == 1) {
+            System.out.println("Okay.");
+        }
+        else {
+            System.out.println("Bad...");
+        }
+
+        temp = overallScore / 10;
+        overallScore = overallScore % 10;
+        System.out.print("DTI: ");
+        if (temp == 2) {
+            System.out.println("Good!");
+        }
+        else if (temp == 1) {
+            System.out.println("Okay.");
+        }
+        else {
+            System.out.println("Bad...");
+        }
+
+        temp = overallScore;
+        System.out.print("FEDTI: ");
+        if (temp == 2) {
+            System.out.println("Good!");
+        }
+        else {
+            System.out.println("Bad...");
+        }
+        
+        return;
     }
     
     // Function to evaluate Credit Rating
