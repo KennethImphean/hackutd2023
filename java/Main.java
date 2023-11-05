@@ -14,8 +14,11 @@ public class Main {
             System.out.println("Block 1 - " + e.getMessage());
         }
 
+        String csvOutputFileName = "";
+
         try {
-            System.out.println("Output file name: " + createCSVOutputFile(exampleFileName));
+            csvOutputFileName = createCSVOutputFile(exampleFileName);
+            System.out.println("Output file name: " + csvOutputFileName);
         } catch (Exception e) {
             System.out.println("Block 2 - " + e.getMessage());
         }
