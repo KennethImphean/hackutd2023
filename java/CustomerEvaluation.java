@@ -24,17 +24,19 @@ public abstract class CustomerEvaluation {
         
         int overallScore = evalCredit * 1000 + evalLTV * 100 + evalDTI * 10 + evalFEDTI * 1;
         x.setOverall(overallScore);
-        PrintOverall(overallScore);     //TODO: For testing, remove later!!!!
+        PrintOverall(overallScore, x);     //TODO: For testing, remove later!!!!
         return overallScore;
     }
 
-    public static void PrintOverall(int overallScore) throws FileNotFoundException{
+    public static void PrintOverall(int overallScore, Customer x) throws FileNotFoundException{
 
         FileOutputStream outStream = new FileOutputStream("Evaluations.txt");
         PrintWriter writer = new PrintWriter(outStream);
 
         int temp = overallScore / 1000;
         overallScore = overallScore % 1000;
+        System.out.println(x.getID() + ":");
+
         System.out.print("Credit: ");
         if (temp == 2) {
             System.out.println("Good!\t");
