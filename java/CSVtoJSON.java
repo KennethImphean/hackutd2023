@@ -5,11 +5,11 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public abstract class CSVtoJSON {
-    public static void convert() throws FileNotFoundException{
+    public static void convert(String outputFileName) throws FileNotFoundException{
         FileOutputStream outStream = new FileOutputStream("A1.json");
         PrintWriter writer = new PrintWriter(outStream);
 
-        FileInputStream inStream = new FileInputStream("hackutd2023\\data\\ExampleData.csv");
+        FileInputStream inStream = new FileInputStream("hackutd2023\\data\\" + outputFileName);
         Scanner inScnr = new Scanner (inStream);
 
         writer.println("{\n\t\"Customer\": {");
