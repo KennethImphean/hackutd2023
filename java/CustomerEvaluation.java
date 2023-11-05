@@ -1,6 +1,11 @@
 //
 //
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+
 public abstract class CustomerEvaluation {
     
     // Function to evaluate Overall Eligibility for customer
@@ -11,7 +16,7 @@ public abstract class CustomerEvaluation {
     // A '0' in a digit will give strong suggestions for the user to be able to be eligible in that category, and will disqualify them.
     // A '1' in a digit will give suggestions for the user to improve their eligibility in that category, but will not disqualify them.
     // A '2' in a digit will not give suggestions to the user for that category.
-    public static int EvaluateOverall(Customer x) {
+    public static int EvaluateOverall(Customer x) throws FileNotFoundException{
         int evalCredit = EvaluateCreditRating(x);
         int evalLTV = EvaluateLTV(x);
         int evalDTI = EvaluateDTI(x);
@@ -23,52 +28,57 @@ public abstract class CustomerEvaluation {
         return overallScore;
     }
 
-    public static void PrintOverall(int overallScore) {
+    public static void PrintOverall(int overallScore) throws FileNotFoundException{
+
+        FileOutputStream outStream = new FileOutputStream("Evaluations.txt");
+        PrintWriter writer = new PrintWriter(outStream);
+
         int temp = overallScore / 1000;
         overallScore = overallScore % 1000;
         System.out.print("Credit: ");
         if (temp == 2) {
-            System.out.println("Good!");
+            writer.print("Good!\t");
         }
         else {
-            System.out.println("Bad...");
+            writer.print("Bad...\t");
         }
 
         temp = overallScore / 100;
         overallScore = overallScore % 100;
         System.out.print("LTV: ");
         if (temp == 2) {
-            System.out.println("Good!");
+            writer.print("Good!\t");
         }
         else if (temp == 1) {
-            System.out.println("Okay.");
+            writer.print("Okay.\t");
         }
         else {
-            System.out.println("Bad...");
+            writer.print("Bad...\t");
         }
 
         temp = overallScore / 10;
         overallScore = overallScore % 10;
         System.out.print("DTI: ");
         if (temp == 2) {
-            System.out.println("Good!");
+            writer.print("Good!\t");
         }
         else if (temp == 1) {
-            System.out.println("Okay.");
+            writer.print("Okay.\t");
         }
         else {
-            System.out.println("Bad...");
+            writer.print("Bad...\t");
         }
 
         temp = overallScore;
         System.out.print("FEDTI: ");
         if (temp == 2) {
-            System.out.println("Good!");
+            writer.print("Good!\t");
         }
         else {
-            System.out.println("Bad...");
+            writer.print("Bad...\t");
         }
         
+        writer.close();
         return;
     }
     
