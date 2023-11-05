@@ -52,6 +52,7 @@ public class Customer extends CustomerEvaluation{
         CalculateLTV();
         CalculateDTI();
         CalculateFEDTI();
+        overall = CustomerEvaluation.EvaluateOverall(this);
 
     //6 int, 3 double, 1 int
     }
