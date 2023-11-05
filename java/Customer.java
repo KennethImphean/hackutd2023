@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 
 public class Customer extends CustomerEvaluation{
     protected int ID;
@@ -37,7 +38,7 @@ public class Customer extends CustomerEvaluation{
         overall = 0;
     }
 
-    public Customer(String[] arr)
+    public Customer(String[] arr) throws FileNotFoundException
     {
         this.ID = Integer.parseInt(arr[0]);
         this.GrossMonthlyIncome = Integer.parseInt(arr[1]);
