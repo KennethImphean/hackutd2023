@@ -11,8 +11,9 @@ public class Customer extends CustomerEvaluation{
     protected double LoanAmount;
     protected double MonthlyMortgagePayment;
     protected int CreditScore;
-    protected int LTV;
-    protected int DTI;
+    protected double LTV;
+    protected double DTI;
+    protected double FEDTI;
     protected double debtServicingMortage;
     protected double overall;
     
@@ -50,6 +51,9 @@ public class Customer extends CustomerEvaluation{
         DTI = 0;
         debtServicingMortage = 0;
         overall = 0;
+        CalculateLTV();
+        CalculateDTI();
+        CalculateFEDTI();
     }
 
     public Customer(String fileName) throws Exception
@@ -57,6 +61,22 @@ public class Customer extends CustomerEvaluation{
         Scanner inScan = new Scanner(new File(fileName));
 
 
+    }
+
+    public void CalculateLTV() {
+        LTV = ((LoanAmount - DownPayment) / LoanAmount) * 100;
+        return;
+    }
+
+    public void CalculateDTI() {
+        double totalDebt = CreditCardPayment + CarPayment + StudentLoanPayment + MonthlyMortgagePayment;
+        DTI = totalDebt / GrossMonthlyIncome;
+        return;
+    }
+    
+    protected void CalculateFEDTI() {
+        FEDTI = MonthlyMortgagePayment / GrossMonthlyIncome;
+        return;
     }
     
     public double getOverall() {
@@ -121,24 +141,26 @@ public class Customer extends CustomerEvaluation{
         CreditScore = creditScore;
     }
 
-    public int getLTV() {
+    public double getLTV() {
         return LTV;
     }
-    public void setLTV(int lTV) {
+    public void setLTV(double lTV) {
         LTV = lTV;
     }
 
-    public int getDTI() {
+    public double getDTI() {
         return DTI;
     }
-    public void setDTI(int dTI) {
+    public void setDTI(double dTI) {
         DTI = dTI;
     }
 
-    
-
-
-
+    public double getFEDTI() {
+        return DTI;
+    }
+    public void setFEDTI(double dTI) {
+        DTI = dTI;
+    }
 
 
 }
