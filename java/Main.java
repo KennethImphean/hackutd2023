@@ -3,7 +3,7 @@ import java.io.*;
 public class Main {
     
     // TODO delete after testing
-    public static final String exampleFileName = "C:\\Users\\School\\Desktop\\NEW PROJECT HACKUTDX\\hackutd2023\\data\\ExampleData.csv";
+    public static final String exampleFileName = "hackutd2023\\data\\ExampleData.csv";
     public static void main(String[] args)
     {
         //Scanner scnr = new Scanner(System.in);
