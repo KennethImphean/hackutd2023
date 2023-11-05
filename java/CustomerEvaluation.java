@@ -2,9 +2,8 @@
 //
 
 abstract class CustomerEvaluation {
-    static Customer x;
 
-    public static void test() {
+    public static void test(Customer x) {
         System.out.print(x.getID());
 
     }
