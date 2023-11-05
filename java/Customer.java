@@ -13,12 +13,11 @@ public class Customer extends CustomerEvaluation{
     protected double LTV;
     protected double DTI;
     protected double FEDTI;
-    protected double debtServicingMortage;
     protected double overall;
     
     public String toString()
     {
-        return "" + ID + "," + GrossMonthlyIncome + "," + CreditCardPayment + "," + CarPayment + "," + StudentLoanPayment + "," + AppraisedValue + "," + DownPayment + "," + LoanAmount + "," + MonthlyMortgagePayment + "," + CreditScore + "," + LTV + "," + DTI + "," + FEDTI + "," + debtServicingMortage + "," + overall;
+        return "" + ID + "," + GrossMonthlyIncome + "," + CreditCardPayment + "," + CarPayment + "," + StudentLoanPayment + "," + AppraisedValue + "," + DownPayment + "," + LoanAmount + "," + MonthlyMortgagePayment + "," + CreditScore + "," + LTV + "," + DTI + "," + FEDTI + "," + overall;
     }
 
     public Customer()
@@ -35,7 +34,6 @@ public class Customer extends CustomerEvaluation{
         CreditScore = 0;
         LTV = 0;
         DTI = 0;
-        debtServicingMortage = 0;
         overall = 0;
     }
 
@@ -72,7 +70,6 @@ public class Customer extends CustomerEvaluation{
         CreditScore = creditScore;
         LTV = 0;
         DTI = 0;
-        debtServicingMortage = 0;
         overall = 0;
         CalculateLTV();
         CalculateDTI();
