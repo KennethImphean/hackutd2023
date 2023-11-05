@@ -13,7 +13,7 @@ public class Customer extends CustomerEvaluation{
     protected double LTV;
     protected double DTI;
     protected double FEDTI;
-    protected double overall;
+    protected int overall;
     
     public String toString()
     {
