@@ -1,5 +1,4 @@
-import java.util.Scanner;
-import java.io.*;
+
 public class Customer extends CustomerEvaluation{
     protected int ID;
     protected int GrossMonthlyIncome;
@@ -17,6 +16,11 @@ public class Customer extends CustomerEvaluation{
     protected double debtServicingMortage;
     protected double overall;
     
+    public String toString()
+    {
+        return "" + ID + "," + GrossMonthlyIncome + "," + CreditCardPayment + "," + CarPayment + "," + StudentLoanPayment + "," + AppraisedValue + "," + DownPayment + "," + LoanAmount + "," + MonthlyMortgagePayment + "," + CreditScore + "," + LTV + "," + DTI + "," + FEDTI + "," + debtServicingMortage + "," + overall;
+    }
+
     public Customer()
     {
         ID = 0;
@@ -33,6 +37,25 @@ public class Customer extends CustomerEvaluation{
         DTI = 0;
         debtServicingMortage = 0;
         overall = 0;
+    }
+
+    public Customer(String[] arr)
+    {
+        this.ID = Integer.parseInt(arr[0]);
+        this.GrossMonthlyIncome = Integer.parseInt(arr[1]);
+        this.CreditCardPayment = Integer.parseInt(arr[2]);
+        this.CarPayment = Integer.parseInt(arr[3]);
+        this.StudentLoanPayment = Integer.parseInt(arr[4]);
+        this.AppraisedValue = Integer.parseInt(arr[5]);
+        this.DownPayment = Double.parseDouble(arr[6]);
+        this.LoanAmount = Double.parseDouble(arr[7]);
+        this.MonthlyMortgagePayment = Double.parseDouble(arr[8]);
+        this.CreditScore = Integer.parseInt(arr[9]);
+        CalculateLTV();
+        CalculateDTI();
+        CalculateFEDTI();
+
+    //6 int, 3 double, 1 int
     }
     
     public Customer(int iD, int grossMonthlyIncome, int creditCardPayment, int carPayment, int studentLoanPayment,
@@ -56,12 +79,7 @@ public class Customer extends CustomerEvaluation{
         CalculateFEDTI();
     }
 
-    public Customer(String fileName) throws Exception
-    {
-        Scanner inScan = new Scanner(new File(fileName));
-
-
-    }
+    
 
     protected void CalculateLTV() {
         LTV = ((LoanAmount - DownPayment) / LoanAmount) * 100;
@@ -162,5 +180,5 @@ public class Customer extends CustomerEvaluation{
         DTI = dTI;
     }
 
-
+    
 }
