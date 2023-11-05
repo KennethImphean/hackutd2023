@@ -18,6 +18,7 @@ public abstract class CustomerEvaluation {
         int evalFEDTI = EvaluateFEDTI(x);
         
         int overallScore = evalCredit * 1000 + evalLTV * 100 + evalDTI * 10 + evalFEDTI * 1;
+        x.setOverall(overallScore);
         PrintOverall(overallScore);     //TODO: For testing, remove later!!!!
         return overallScore;
     }
