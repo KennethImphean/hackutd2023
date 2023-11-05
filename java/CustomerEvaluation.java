@@ -33,6 +33,9 @@ public abstract class CustomerEvaluation {
         FileOutputStream outStream = new FileOutputStream("Evaluations.txt");
         PrintWriter writer = new PrintWriter(outStream);
 
+        boolean accept = true;
+        boolean best = true;
+
         int temp = overallScore / 1000;
         overallScore = overallScore % 1000;
         System.out.println(x.getID() + ":");
@@ -43,6 +46,7 @@ public abstract class CustomerEvaluation {
         }
         else {
             System.out.println("Bad...\t");
+            accept = false;
         }
 
         temp = overallScore / 100;
@@ -53,9 +57,11 @@ public abstract class CustomerEvaluation {
         }
         else if (temp == 1) {
             System.out.println("Okay.\t");
+            best = false;
         }
         else {
             System.out.println("Bad...\t");
+            accept = false;
         }
 
         temp = overallScore / 10;
@@ -66,9 +72,11 @@ public abstract class CustomerEvaluation {
         }
         else if (temp == 1) {
             System.out.println("Okay.\t");
+            best = false;
         }
         else {
             System.out.println("Bad...\t");
+            accept = false;
         }
 
         temp = overallScore;
@@ -78,7 +86,19 @@ public abstract class CustomerEvaluation {
         }
         else {
             System.out.println("Bad...\t");
+            accept = false;
         }
+
+        if (accept) {
+            System.out.println("You may purchase a home");
+            if (!best) {
+                System.out.println("But you could still improve in some areas");
+            }
+        }
+        else {
+            System.out.println("You are not approved to purchase a home");
+        }
+        System.out.println("");
         
         writer.close();
         return;
