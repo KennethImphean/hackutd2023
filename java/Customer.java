@@ -63,12 +63,12 @@ public class Customer extends CustomerEvaluation{
 
     }
 
-    public void CalculateLTV() {
+    protected void CalculateLTV() {
         LTV = ((LoanAmount - DownPayment) / LoanAmount) * 100;
         return;
     }
 
-    public void CalculateDTI() {
+    protected void CalculateDTI() {
         double totalDebt = CreditCardPayment + CarPayment + StudentLoanPayment + MonthlyMortgagePayment;
         DTI = totalDebt / GrossMonthlyIncome;
         return;
