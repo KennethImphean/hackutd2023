@@ -3,7 +3,7 @@ public class InvalidInputException extends Exception{
 
     public InvalidInputException(String s)
     {
-        super("Invalid user input " + s);
+        super("Invalid user input: " + s);
         this.invalidString = s;
     }
 
@@ -14,6 +14,6 @@ public class InvalidInputException extends Exception{
     
     public String getMessage()
     {
-        return "Invalid user input " + this.invalidString;
+        return "Invalid user input: " + this.invalidString;
     }
 }
