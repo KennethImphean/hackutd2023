@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public abstract class CSVtoJSON {
     public static void convert(String outputFileName) throws FileNotFoundException{
-        FileOutputStream outStream = new FileOutputStream("A1.json");
+        FileOutputStream outStream = new FileOutputStream(outputFileName + ".json");
         PrintWriter writer = new PrintWriter(outStream);
 
         FileInputStream inStream = new FileInputStream("hackutd2023\\data\\" + outputFileName);
