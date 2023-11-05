@@ -3,8 +3,8 @@ import java.util.Scanner;
 import java.io.*;
 public class Main {
     
-    public static final String labels = "ID,GrossMonthlyIncome,CreditCardPayment,CarPayment,StudentLoanPayments,AppraisedValue,DownPayment,LoanAmount,MonthlyMortgagePayment,CreditScore";
-    
+    public static final String LABELS = "ID,GrossMonthlyIncome,CreditCardPayment,CarPayment,StudentLoanPayments,AppraisedValue,DownPayment,LoanAmount,MonthlyMortgagePayment,CreditScore";
+    public static final String USER_INPUT_FILE_NAME = "hackutd2023\\data\\UserInputData.csv";
     
     public static void main(String[] args)
     {
@@ -29,36 +29,126 @@ public class Main {
                 ExampleProcess.process();
                 break;
             case 2:
-                UserProcess.process(testGetFileName(scnr));
+                File file = new File(USER_INPUT_FILE_NAME);
+                Scanner inScan = null;
+                if (file.exists())
+                {
+                    try {
+                        writeUserInput(testGetUserInput(scnr), file);
+                        inScan = new Scanner(file);    
+                        testGetFileName(scnr, file);
+                    } catch (Exception e) {
+                        System.out.println("Check to make sure UserInputData.csv exists inside the data folder");
+                    }
+                    
+                    
+                    UserProcess.process(USER_INPUT_FILE_NAME);    
+                }
+                    
                 break;
         }
          
 
     }
 
-    //TODO: Fix so that you don't have to press enter again to try again
-    public static String testGetFileName(Scanner scnr)
+    public static String[] tempTest(Scanner scnr)
     {
-        scnr.nextLine();
+        if (scnr.next().equals("test"))
+        {
+            return "1,3103,317,374,250,268468,32216.16,236251.84,1127.9,778".split(",");
+
+
+        }    
+
+        else
+            return null;
+    }
+
+    public static String[] testGetUserInput(Scanner scnr)
+    {
+
+        String [] arrInput = null;
+
+        arrInput = tempTest(scnr);
+        if (arrInput != null)
+            return arrInput;
+        
+        boolean validInput = false;
+        while (!validInput)
+        {
+            arrInput = new String[10];
+            arrInput[0] = "0";
+
+            System.out.println("Enter gross monthly income:");
+            arrInput[1] = scnr.next();
+
+            System.out.println("Enter credit card payment:");
+            arrInput[2] = scnr.next();
+
+            System.out.println("Enter car payment:");
+            arrInput[3] = scnr.next();
+
+            System.out.println("Enter student loan payment:");
+            arrInput[4] = scnr.next();
+
+            System.out.println("Enter appraised value:");
+            arrInput[5] = scnr.next();
+
+            System.out.println("Enter down payment:");
+            arrInput[6] = scnr.next();
+
+            System.out.println("Enter loan Amount:");
+            arrInput[7] = scnr.next();
+
+            System.out.println("Enter monthly mortgage payment:");
+            arrInput[8] = scnr.next();
+
+            System.out.println("Enter credit score:");
+            arrInput[9] = scnr.next();
+
+            try {
+                checkCustomerInput(arrInput);
+                validInput = true;
+            } catch (Exception e) {
+                scnr.next();
+
+
+            }
+            
+        }
+
+        return arrInput;
+        
+
+
+    }
+
+
+
+    //TODO: Fix so that you don't have to press enter again to try again
+    public static String testGetFileName(Scanner scnr, File file) throws FileNotFoundException 
+    {
+        Scanner inScan = new Scanner(file);
+        inScan.nextLine();
         String fileName = "";
         while (fileName.equals(""))
         {
             System.out.println("Enter the file name:");
             fileName = scnr.nextLine();
-            System.out.println(fileName);
+            //System.out.println(fileName);
             try {
                 checkFileInput(fileName);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 fileName = "";
-                scnr.nextLine();
+                inScan.nextLine();
             }
         }
-
+        inScan.close();
         return fileName;
     }
 
-
+    
 
     public static void checkFileInput(String fileName) throws Exception
     {
@@ -67,10 +157,12 @@ public class Main {
         {
             Scanner inScan = new Scanner(file);
             String input = inScan.nextLine();
-            if (!input.equals(labels))
+            if (!input.equals(LABELS))
             {
                 inScan.nextLine();
+                inScan.close();
                 throw new InvalidInputException("File does not contain labels to confirm the correct data is provided");
+                
             }
                 
             
@@ -100,6 +192,8 @@ public class Main {
         {
             throw new InvalidInputException("Not enough input");
         }
+
+
         for (int i = 0; i < arrInput.length; i++)
         {
             switch (i)
@@ -128,6 +222,30 @@ public class Main {
                     }
             }
 
+            if (Integer.parseInt(arrInput[0]) < 0)
+            {
+                throw new InvalidInputException(getInputType(1));    
+            }
+
+            else if (Integer.parseInt(arrInput[1]) <= 0)
+            {
+                throw new InvalidInputException(getInputType(1));
+            }
+
+            else if (Integer.parseInt(arrInput[5]) <= 0)
+            {
+                throw new InvalidInputException(getInputType(5));   
+            }
+
+            else if (Double.parseDouble(arrInput[7]) <= 0)
+            {
+                throw new InvalidInputException(getInputType(7));   
+            }
+
+            else if (Double.parseDouble(arrInput[8]) <= 0)
+            {
+                throw new InvalidInputException(getInputType(8));   
+            }
 
         }
 
@@ -163,6 +281,20 @@ public class Main {
             default:
                 return "";   
         }
+    }
+
+    public static void writeUserInput(String[] arr, File file) throws FileNotFoundException
+    {
+        PrintWriter outFile = new PrintWriter(file);
+        outFile.println(LABELS);
+        for (int i = 0; i < arr.length; i++)
+        {
+            outFile.print(arr[i]);
+        }
+
+        outFile.close();
+
+
     }
 
     // TODO: delete test function when done
