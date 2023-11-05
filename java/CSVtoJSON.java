@@ -14,14 +14,19 @@ public abstract class CSVtoJSON {
         FileOutputStream outStream = new FileOutputStream(outputFileNoExtention + ".json");
         PrintWriter writer = new PrintWriter(outStream);
 
-        writer.println("{\n\t\"Customer\": {");
+        //writer.println("{\n\t\"Customer\": {");
+        writer.println("\n[");
 
         String[] titleArr = inScnr.nextLine().split(",");
         while(inScnr.hasNext()) {
             String[] dataArr = inScnr.nextLine().split(",");
-            writer.println("\t\t\"" + dataArr[0] + "\": {");
+            //writer.println("\t\t\"" + dataArr[0] + "\": {");
+            writer.println("\t\t{");
 
-            writer.print("\t\t\t\"" + titleArr[1] + "\": \"" + dataArr[1] + "\",");
+            writer.print("\t\t\t\"" + titleArr[0] + "\": \"" + dataArr[0] + "\",");
+            writer.println("\t\t\t");
+            
+            writer.print("\t\t\t\"" + titleArr[1] + "\": " + dataArr[1] + ",");
             writer.println("\t\t\t");
 
             writer.print("\t\t\t\"" + titleArr[2] + "\": \"" + dataArr[2] + "\",");
@@ -71,8 +76,8 @@ public abstract class CSVtoJSON {
 
         }
 
-        writer.println("\n\t}");
-        writer.print("}");
+        //writer.println("\n\t}");
+        writer.print("]");
 
         writer.close();
         inScnr.close();
