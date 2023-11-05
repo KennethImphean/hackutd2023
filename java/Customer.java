@@ -1,8 +1,11 @@
+import java.util.Scanner;
+import java.io.*;
 public class Customer extends CustomerEvaluation{
     protected int ID;
     protected int GrossMonthlyIncome;
+    protected int CreditCardPayment;
     protected int CarPayment;
-    protected int StudentLoanPayments;
+    protected int StudentLoanPayment;
     protected int AppraisedValue;
     protected double DownPayment;
     protected double LoanAmount;
@@ -12,24 +15,57 @@ public class Customer extends CustomerEvaluation{
     protected int DTI;
     protected double debtServicingMortage;
     protected double overall;
+    
+    public Customer()
+    {
+        ID = 0;
+        GrossMonthlyIncome = 0;
+        CreditCardPayment = 0;
+        CarPayment = 0;
+        StudentLoanPayment = 0;
+        AppraisedValue = 0;
+        DownPayment = 0;
+        LoanAmount = 0;
+        MonthlyMortgagePayment = 0;
+        CreditScore = 0;
+        LTV = 0;
+        DTI = 0;
+        debtServicingMortage = 0;
+        overall = 0;
+    }
+    
+    public Customer(int iD, int grossMonthlyIncome, int creditCardPayment, int carPayment, int studentLoanPayment,
+            int appraisedValue, double downPayment, double loanAmount, double monthlyMortgagePayment, int creditScore) {
+        ID = iD;
+        GrossMonthlyIncome = grossMonthlyIncome;
+        CreditCardPayment = creditCardPayment;
+        CarPayment = carPayment;
+        StudentLoanPayment = studentLoanPayment;
+        AppraisedValue = appraisedValue;
+        DownPayment = downPayment;
+        LoanAmount = loanAmount;
+        MonthlyMortgagePayment = monthlyMortgagePayment;
+        CreditScore = creditScore;
+        LTV = 0;
+        DTI = 0;
+        debtServicingMortage = 0;
+        overall = 0;
+    }
+
+    public Customer(String fileName) throws Exception
+    {
+        Scanner inScan = new Scanner(new File(fileName));
+
+
+    }
+    
     public double getOverall() {
         return overall;
     }
     public void setOverall(double overall) {
         this.overall = overall;
     }
-    public Customer(int iD, int grossMonthlyIncome, int carPayment, int studentLoanPayments, int appraisedValue,
-            double downPayment, double loanAmount, double monthlyMortgagePayment, int creditScore) {
-        ID = iD;
-        GrossMonthlyIncome = grossMonthlyIncome;
-        CarPayment = carPayment;
-        StudentLoanPayments = studentLoanPayments;
-        AppraisedValue = appraisedValue;
-        DownPayment = downPayment;
-        LoanAmount = loanAmount;
-        MonthlyMortgagePayment = monthlyMortgagePayment;
-        CreditScore = creditScore;
-    }
+
     public int getID() {
         return ID;
     }
@@ -49,10 +85,10 @@ public class Customer extends CustomerEvaluation{
         CarPayment = carPayment;
     }
     public int getStudentLoanPayments() {
-        return StudentLoanPayments;
+        return StudentLoanPayment;
     }
     public void setStudentLoanPayments(int studentLoanPayments) {
-        StudentLoanPayments = studentLoanPayments;
+        StudentLoanPayment = studentLoanPayments;
     }
     public int getAppraisedValue() {
         return AppraisedValue;
