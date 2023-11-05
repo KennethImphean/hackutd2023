@@ -37,45 +37,45 @@ public abstract class CustomerEvaluation {
         overallScore = overallScore % 1000;
         System.out.print("Credit: ");
         if (temp == 2) {
-            writer.print("Good!\t");
+            System.out.println("Good!\t");
         }
         else {
-            writer.print("Bad...\t");
+            System.out.println("Bad...\t");
         }
 
         temp = overallScore / 100;
         overallScore = overallScore % 100;
         System.out.print("LTV: ");
         if (temp == 2) {
-            writer.print("Good!\t");
+            System.out.println("Good!\t");
         }
         else if (temp == 1) {
-            writer.print("Okay.\t");
+            System.out.println("Okay.\t");
         }
         else {
-            writer.print("Bad...\t");
+            System.out.println("Bad...\t");
         }
 
         temp = overallScore / 10;
         overallScore = overallScore % 10;
         System.out.print("DTI: ");
         if (temp == 2) {
-            writer.print("Good!\t");
+            System.out.println("Good!\t");
         }
         else if (temp == 1) {
-            writer.print("Okay.\t");
+            System.out.println("Okay.\t");
         }
         else {
-            writer.print("Bad...\t");
+            System.out.println("Bad...\t");
         }
 
         temp = overallScore;
         System.out.print("FEDTI: ");
         if (temp == 2) {
-            writer.print("Good!\t");
+            System.out.println("Good!\t");
         }
         else {
-            writer.print("Bad...\t");
+            System.out.println("Bad...\t");
         }
         
         writer.close();
