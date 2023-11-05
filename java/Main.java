@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.*;
 public class Main {
@@ -6,15 +7,29 @@ public class Main {
     
     public static void main(String[] args)
     {
-        //Scanner scnr = new Scanner(System.in);
+        Scanner scnr = new Scanner(System.in);
+        int userMenu = 0;
+        while (userMenu == 0) {
+            System.out.print("Enter 1 for processing example data, or 2 for processing user data: ");
+            try {
+                userMenu = scnr.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println(e.getMessage());
+                scnr.next();
+                userMenu = 0;
+            }
+        }
         
-        
-        
-        
-
-        
-
-
+        switch (userMenu) {
+            case 1:
+                //todo: call function to process example data
+                break;
+            case 2:
+                //todo: call function to process user data
+                break;
+        }
+         
 
     }
 

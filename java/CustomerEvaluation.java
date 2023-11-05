@@ -1,17 +1,36 @@
 //
 //
 
-abstract class CustomerEvaluation {
+public abstract class CustomerEvaluation {
+    
+    // Function to evaluate Overall Eligibility for customer
+    // First digit is eligibility based on credit score (2 is acceptable, 0 is not)
+    // Second digit is eligibility based on LTV (2 is preferred, 1 is acceptable, 0 is not)
+    // Third digit is eligibility based on DTI (2 is preferred, 1 is acceptable, 0 is not)
+    // Fourth digit is eligibility based on FEDTI (2 is acceptable, 0 is not)
+    // A '0' in a digit will give strong suggestions for the user to be able to be eligible in that category, and will disqualify them.
+    // A '1' in a digit will give suggestions for the user to improve their eligibility in that category, but will not disqualify them.
+    // A '2' in a digit will not give suggestions to the user for that category.
+    public static int EvaluateOverall(Customer x) {
+        int evalCredit = EvaluateCreditRating(x);
+        int evalLTV = EvaluateLTV(x);
+        int evalDTI = EvaluateDTI(x);
+        int evalFEDTI = EvaluateFEDTI(x);
+        
+        int overallScore = evalCredit + evalLTV * 10 + evalDTI * 100 + evalFEDTI * 1000;
+        return overallScore;
+    }
+    
     // Function to evaluate Credit Rating
-    // Returns true if credit score is favorable (x >= 640)
-    // Returns false if credit score is unfavorable (x < 640)
-    public static boolean EvaluateCreditRating(Customer x) {
+    // Returns 1 if credit score is favorable (x >= 640)
+    // Returns 0 if credit score is unfavorable (x < 640)
+    public static int EvaluateCreditRating(Customer x) {
         int creditScore = x.getCreditScore();
         if (creditScore >= 640) {
-            return true;
+            return 2;
         }
         else {
-            return false;
+            return 0;
         }
     }
 
@@ -50,15 +69,15 @@ abstract class CustomerEvaluation {
     }
 
     // Function to evaluate FEDTI
-    // Returns true if FEDTI is acceptable (FEDTI <= 28%)
-    // Returns false if FEDTI is not acceptable (28% < FEDTI)
-    public static boolean EvaluateFEDTI(Customer x) {
+    // Returns 1 if FEDTI is acceptable (FEDTI <= 28%)
+    // Returns 0 if FEDTI is not acceptable (28% < FEDTI)
+    public static int EvaluateFEDTI(Customer x) {
         double FEDTI = x.getFEDTI();
         if (FEDTI <= 28.0) {
-            return true;
+            return 2;
         }
         else {
-            return false;
+            return 0;
         }
     }
 }   
