@@ -82,18 +82,18 @@ public class Customer extends CustomerEvaluation{
     
 
     protected void CalculateLTV() {
-        LTV = ((LoanAmount - DownPayment) / LoanAmount) * 100;
+        LTV = ((LoanAmount - DownPayment) / LoanAmount) * 100.0;
         return;
     }
 
     protected void CalculateDTI() {
         double totalDebt = CreditCardPayment + CarPayment + StudentLoanPayment + MonthlyMortgagePayment;
-        DTI = totalDebt / GrossMonthlyIncome;
+        DTI = (totalDebt / GrossMonthlyIncome) * 100.0;
         return;
     }
     
     protected void CalculateFEDTI() {
-        FEDTI = MonthlyMortgagePayment / GrossMonthlyIncome;
+        FEDTI = (MonthlyMortgagePayment / GrossMonthlyIncome) * 100.0;
         return;
     }
     
