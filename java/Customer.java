@@ -94,10 +94,10 @@ public class Customer extends CustomerEvaluation{
         return;
     }
     
-    public double getOverall() {
+    public int getOverall() {
         return overall;
     }
-    public void setOverall(double overall) {
+    public void setOverall(int overall) {
         this.overall = overall;
     }
 
