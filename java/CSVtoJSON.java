@@ -7,11 +7,12 @@ import java.util.Scanner;
 public abstract class CSVtoJSON {
     public static void convert(String outputFileName) throws FileNotFoundException{
         String outputFileNoExtention = outputFileName.substring(0, outputFileName.length() - 4);
+
+        FileInputStream inStream = new FileInputStream(outputFileName);
+        Scanner inScnr = new Scanner (inStream);
+        
         FileOutputStream outStream = new FileOutputStream(outputFileNoExtention + ".json");
         PrintWriter writer = new PrintWriter(outStream);
-
-        FileInputStream inStream = new FileInputStream("hackutd2023\\data\\" + outputFileName);
-        Scanner inScnr = new Scanner (inStream);
 
         writer.println("{\n\t\"Customer\": {");
 
