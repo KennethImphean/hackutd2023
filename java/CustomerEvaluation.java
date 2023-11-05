@@ -2,12 +2,6 @@
 //
 
 abstract class CustomerEvaluation {
-
-    public static void test(Customer x) {
-        System.out.print(x.getID());
-
-    }
-
     // Function to evaluate Credit Rating
     // Returns true if credit score is favorable (x >= 640)
     // Returns false if credit score is unfavorable (x < 640)
